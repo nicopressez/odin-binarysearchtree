@@ -186,6 +186,33 @@ class Tree{
       return currentHeight;
 
   }
+  depth(node){
+    let currentDepth = 0;
+    let value = node.data
+    let currentNode = this.root;
+
+    while (value !== currentNode.data)
+    if (value < currentNode.data) {
+        currentDepth++;
+        currentNode = currentNode.left;
+      } else if (value > currentNode.data) {
+        currentDepth++
+        currentNode = currentNode.right;
+     }
+     return currentDepth;
+  }
+  isBalanced(){
+    const leftHeight = this.height(this.root.left);
+    const rightHeight = this.height(this.root.right)
+
+    const heightDiff = leftHeight - rightHeight;
+    if (Math.abs(heightDiff) <= 1) return true;
+        else return false;
+  }
+  rebalance(){
+    const nodes = this.inOrder();
+    this.root = this.buildTree(nodes);
+  }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
