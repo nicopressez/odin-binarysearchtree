@@ -1,6 +1,6 @@
 let arraytest = [15,0,1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 
-class Node{
+ class Node{
   constructor(d){
     this.data = d;
     this.left = null;
@@ -8,7 +8,7 @@ class Node{
   }
 }
 
-class Tree{
+ class Tree{
   constructor(array){
     const sortedArray = array.sort((a,b) => a - b);
     this.root = this.buildTree(sortedArray);
@@ -215,7 +215,7 @@ class Tree{
   }
 }
 
-const prettyPrint = (node, prefix = "", isLeft = true) => {
+ const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
   }
@@ -228,5 +228,28 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-  const tree = new Tree(arraytest)
-  prettyPrint(tree.root)
+const randomArray = (size) => {
+  return Array.from({ length: size }, () => Math.floor(Math.random() * 100));
+};
+
+
+const tree = new Tree(randomArray(30));
+
+console.log("Balanced: " + tree.isBalanced());
+console.log("Level order: " + tree.levelOrder());
+console.log("Pre Order: " + tree.preOrder());
+console.log("Post Order: " + tree.postOrder());
+console.log("In Order: " + tree.inOrder());
+
+for (let index = 0; index < 5; index++) {
+  tree.insert(Math.floor(Math.random() * 1000));
+  
+}
+
+console.log("Balanced: " + tree.isBalanced())
+tree.rebalance();
+console.log("Balanced: " + tree.isBalanced())
+console.log("Level order: " + tree.levelOrder());
+console.log("Pre Order: " + tree.preOrder());
+console.log("Post Order: " + tree.postOrder());
+console.log("In Order: " + tree.inOrder());
